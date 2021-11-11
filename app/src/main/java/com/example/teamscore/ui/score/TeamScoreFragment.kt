@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.teamscore.databinding.FragmentTeamScoreBinding
 
@@ -26,15 +27,15 @@ class TeamScoreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding!!.addOnePoint.setOnClickListener{
-            viewModel.addOnePoint()
+            showMessage(viewModel.addOnePoint())
             updateScour()
         }
         binding!!.subTwoPoint.setOnClickListener{
-            viewModel.subTwoPoint()
+            showMessage(viewModel.subTwoPoint())
             updateScour()
         }
         binding!!.addFourPoint.setOnClickListener {
-            viewModel.addFourPoint()
+            showMessage(viewModel.addFourPoint())
             updateScour()
         }
     }
@@ -46,6 +47,10 @@ class TeamScoreFragment : Fragment() {
     fun updateScour(){
         binding!!.scoreTextview.setText(viewModel.score.toString())
         binding!!.action.setText(viewModel.action.toString())
+    }
+    fun showMessage(message: String?) {
+        if (message != null)
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
 }

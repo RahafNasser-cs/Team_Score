@@ -4,33 +4,36 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 
 class TeamScourViewModel: ViewModel() {
-    private var _scoure = 100.0
+    private var _scoure = 0.0
     val score: Double get() = _scoure
     private var _action = ""
     val action: String get() = _action
 
-    fun addOnePoint(){
-        if (_scoure < 100.0) {
+    fun addOnePoint():  String?{
+       return if (_scoure < 100.0) {
             _scoure += 1
             _action = "You're add one point"
+            null
         } else {
-            //Toast.makeText(this, "You can not add", Toast.LENGTH_LONG)
+            "You can not add"
         }
     }
-    fun subTwoPoint(){
-        if (_scoure != 0.0) {
+    fun subTwoPoint(): String?{
+        return if (_scoure >= 2.0) {
             _scoure -= 2
             _action = "You're subtract two point"
+            null
         } else {
-            //Toast.makeText(this, "You can subtract subs", Toast.LENGTH_LONG)
+            "You can  not subtract"
         }
     }
-    fun addFourPoint(){
-        if (_scoure < 98.00) {
+    fun addFourPoint(): String?{
+        return if (_scoure < 98.00) {
             _scoure += 4
             _action = "You're add four point"
+            null
         } else {
-            //Toast.makeText(this, "You can not add", Toast.LENGTH_LONG)
+            "You can not add"
         }
     }
 }
